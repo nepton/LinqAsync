@@ -8,7 +8,7 @@ Here is an implementation of IAsyncQueryableMethodsProvider for Entity Framework
 ### Abstraction layer project
 
 The abstraction layer project does not know/implement any async method of the underlying db. It's just focus the business logic in here.
-> There is no technical implementation here include EFCore 
+> There is no technical implementation here 
 
 Install the NuGet package from nuget.org
 
