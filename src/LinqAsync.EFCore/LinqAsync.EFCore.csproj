@@ -7,18 +7,6 @@
         <TargetFrameworks>net6.0;netstandard2.0</TargetFrameworks>
     </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="LinqAsync" Version="1.0.0" />
-    </ItemGroup>
-
-    <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
-    </ItemGroup>
-
-    <ItemGroup Condition="$(TargetFramework) == 'net6.0'">
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
-    </ItemGroup>
-
     <PropertyGroup>
         <PackageId>LinqAsync.EFCore</PackageId>
         <VersionPrefix>1.0.0</VersionPrefix>
@@ -37,8 +25,25 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="app.png" Pack="true" PackagePath="\" />
-        <None Include="..\..\readme.md" Pack="true" PackagePath="\" />
+        <None Include="app.png" Pack="true" PackagePath="\"/>
+        <None Include="..\..\readme.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+
+    <ItemGroup Condition="$(Configuration) == 'Release'">
+        <PackageReference Include="LinqAsync" Version="1.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="$(Configuration) == 'Debug'">
+        <ProjectReference Include="..\LinqAsync\LinqAsync.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="$(TargetFramework) == 'net6.0'">
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0"/>
     </ItemGroup>
 
 </Project>

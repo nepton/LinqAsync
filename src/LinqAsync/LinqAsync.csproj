@@ -9,7 +9,7 @@
 
     <PropertyGroup>
         <PackageId>LinqAsync</PackageId>
-        <VersionPrefix>1.0.0</VersionPrefix>
+        <VersionPrefix>1.0.1</VersionPrefix>
         <Authors>Nepton Liu</Authors>
         <Description>Supports asynchronous LINQ query</Description>
         <PackageProjectUrl>https://github.com/nepton/linq-async</PackageProjectUrl>
