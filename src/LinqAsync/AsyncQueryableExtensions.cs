@@ -21,7 +21,7 @@ public static class AsyncQueryableExtensions
     /// <summary>
     /// The registered Provider
     /// </summary>
-    /// <param name="asyncQueryableMethodsProvider">注册异步查询方法</param>
+    /// <param name="asyncQueryableMethodsProvider">Register the asynchronous query method</param>
     public static void RegisterAsyncQueryableMethodsProvider(IAsyncQueryableMethodsProvider asyncQueryableMethodsProvider)
     {
         if (asyncQueryableMethodsProvider == null)

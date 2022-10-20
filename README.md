@@ -1,50 +1,72 @@
-﻿WeChat API is a dotnet library for WeChat API. It provides a simple way to use WeChat API.
+﻿This package allow you to do the asynchronous query with IQueryable. 
+Implements async query interface IAsyncQueryableMethodsProvider for your code.
 
-## Installing
-Install the NuGet package from nuget.org
-
-```
-PM> Install-Package [WeChatApi.RestSharp]
-```
+Here is an implementation of IAsyncQueryableMethodsProvider for Entity Framework Core.
 
 ## Usage
 
-In startup.cs, add the following code to configure services:
+### Abstraction layer project
 
-```csharp
-// add package WeChatApi.RestSharp
-services.AddWeChatApi(options =>
-{
-    options.AppId     = "wx1234567890";
-    options.AppSecret = "1234567890";
-});
+The abstraction layer project does not know/implement any async method of the underlying db. It's just focus the business logic in here.
+> There is no technical implementation here include EFCore 
+
+Install the NuGet package from nuget.org
+
+```
+PM> Install-Package LinqAsync
 ```
 
-Then you can inject the client factory in your controllers:
+The following code example does a query for Contract. Use async method FirstOrDefaultAsync to find the first item. 
 
 ```csharp
-public class HomeController : Controller
+public interface IContactRepository : IQueryable<Contact>
 {
-    private readonly IWeChatLoginApi _loginApi;
-    private readonly WeChatApiOptions _options;
+}
+
+public class ContactQuery
+{
+    private readonly IContactRepository _repo;
     
-    public HomeController(IWeChatLoginApi loginApi, IOptions<WeChatApiOptions> options)
+    public ContactQuery(IContactRepository repo)
     {
-        _loginApi = loginApi;
-        _options = options.Value;    
-    }
+        _repo = repo;
+    } 
 
-    public async Task<IActionResult> Index()
+    public Task<Contact?> GetContactOrDefaultAsync(Guid id)
     {
-        // call the API
-        var token = await _loginApi.GetAccessTokenAsync(_options.AppId, _options.AppSecret);
-
-        return View();
+        var q = from x in _repo
+                where x.Id == id
+                select x;
+               
+        // Here we can use the static extension method for async query without EFCore dependences. 
+        return _repo.FirstOrDefaultAsync(q);
     }
 }
 ```
 
+### Repo implementation with EFCore project
+
+This project will install EFCore packages and **LinqAsync.EFCore**
+
+Install the NuGet package from nuget.org
+
+```
+PM> Install-Package LinqAsync.EFCore
+```
+
+Then we just register the EFCore async query implement to AsyncQueryableExtensions, no more code needed.
+
+```csharp
+// register async query EFCore implementation to AsyncQueryableExtensions at startup
+var efCoreAsyncQueryable = new EntityFrameworkCoreAsyncQueryableMethodsProvider();
+AsyncQueryableExtensions.RegisterAsyncQueryableMethodsProvider(efCoreAsyncQueryable); 
+```
+All async query will pass-thru the provider (EntityFrameworkCoreAsyncQueryableMethodsProvider in this case) to make async query in Entity Framework Core.
+
+## Final
 Leave a comment on GitHub if you have any questions or suggestions.
+
+Turn on the "Star" icon to support if you like it.
 
 ## License
 This project is licensed under the MIT License
