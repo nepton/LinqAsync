@@ -1,5 +1,5 @@
 ﻿# Thingsboard.Net
-[//]: # ([![Build status]&#40;https://ci.appveyor.com/api/projects/status/6yuxsfe71po3ofqg?svg=true&#41;]&#40;https://ci.appveyor.com/project/nepton/thingsboard-net&#41;)
+[![Build status](https://ci.appveyor.com/api/projects/status/48cln9982ydgkj99?svg=true)](https://ci.appveyor.com/project/nepton/linq-async)
 ![GitHub issues](https://img.shields.io/github/issues/nepton/linq-async.svg)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nepton/linq-async/blob/master/LICENSE)
 
