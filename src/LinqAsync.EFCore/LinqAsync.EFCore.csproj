@@ -13,37 +13,44 @@
         <Authors>Nepton Liu</Authors>
         <Description>Supports asynchronous LINQ query for EFCore</Description>
         <PackageProjectUrl>https://github.com/nepton/linq-async</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/nepton/linq-async</RepositoryUrl>
         <PackageIcon>app.png</PackageIcon>
         <PackageReadmeFile>readme.md</PackageReadmeFile>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>linq;async;query</PackageTags>
 
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <IncludeSymbols>True</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(APPVEYOR)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="app.png" Pack="true" PackagePath="\"/>
-        <None Include="..\..\readme.md" Pack="true" PackagePath="\"/>
+        <None Include="app.png" Pack="true" PackagePath="\" />
+        <None Include="..\..\readme.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 
-
-    <ItemGroup Condition="$(Configuration) == 'Release'">
-        <PackageReference Include="LinqAsync" Version="1.0.0"/>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
-    <ItemGroup Condition="$(Configuration) == 'Debug'">
-        <ProjectReference Include="..\LinqAsync\LinqAsync.csproj"/>
+    <ItemGroup>
+        <ProjectReference Include="..\LinqAsync\LinqAsync.csproj" />
     </ItemGroup>
 
     <ItemGroup Condition="$(TargetFramework) == 'netstandard2.0'">
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
     </ItemGroup>
 
     <ItemGroup Condition="$(TargetFramework) == 'net6.0'">
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
     </ItemGroup>
 
 </Project>

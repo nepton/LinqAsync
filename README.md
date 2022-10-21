@@ -1,9 +1,21 @@
-﻿This package allow you to do the asynchronous query with IQueryable. 
+﻿# Thingsboard.Net
+[//]: # ([![Build status]&#40;https://ci.appveyor.com/api/projects/status/6yuxsfe71po3ofqg?svg=true&#41;]&#40;https://ci.appveyor.com/project/nepton/thingsboard-net&#41;)
+![GitHub issues](https://img.shields.io/github/issues/nepton/linq-async.svg)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nepton/linq-async/blob/master/LICENSE)
+
+This package allow you to do the asynchronous query with IQueryable.
 Implements async query interface IAsyncQueryableMethodsProvider for your code.
 
-Here is an implementation of IAsyncQueryableMethodsProvider for Entity Framework Core.
+**All client API are tested in Thingsboard v3.4.x**
+
+## Nuget packages
+| Name             | Version                                                                                                           | Downloads                                                                                                          |
+|------------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| LinqAsync        | [![nuget](https://img.shields.io/nuget/v/LinqAsync.svg)](https://www.nuget.org/packages/LinqAsync/)               | [![stats](https://img.shields.io/nuget/dt/LinqAsync.svg)](https://www.nuget.org/packages/LinqAsync/)               |
+| LinqAsync.EFCore | [![nuget](https://img.shields.io/nuget/v/LinqAsync.EFCore.svg)](https://www.nuget.org/packages/LinqAsync.EFCore/) | [![stats](https://img.shields.io/nuget/dt/LinqAsync.EFCore.svg)](https://www.nuget.org/packages/LinqAsync.EFCore/) |
 
 ## Usage
+Here is an implementation of IAsyncQueryableMethodsProvider for Entity Framework Core.
 
 ### Abstraction layer project
 
