@@ -1,12 +1,10 @@
-﻿# Thingsboard.Net
+﻿# LinqAsync
 [![Build status](https://ci.appveyor.com/api/projects/status/48cln9982ydgkj99?svg=true)](https://ci.appveyor.com/project/nepton/linq-async)
 ![GitHub issues](https://img.shields.io/github/issues/nepton/linq-async.svg)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/nepton/linq-async/blob/master/LICENSE)
 
 This package allow you to do the asynchronous query with IQueryable.
 Implements async query interface IAsyncQueryableMethodsProvider for your code.
-
-**All client API are tested in Thingsboard v3.4.x**
 
 ## Nuget packages
 | Name             | Version                                                                                                           | Downloads                                                                                                          |
