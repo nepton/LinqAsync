@@ -9,16 +9,15 @@
 
     <PropertyGroup>
         <PackageId>LinqAsync</PackageId>
-        <VersionPrefix>1.0.1</VersionPrefix>
-        <Authors>Nepton Liu</Authors>
         <Description>Supports asynchronous LINQ query</Description>
-        <PackageProjectUrl>https://github.com/nepton/linq-async</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/nepton/linq-async</RepositoryUrl>
-        <PackageIcon>app.png</PackageIcon>
-        <PackageReadmeFile>readme.md</PackageReadmeFile>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/nepton/LinqAsync</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/nepton/LinqAsync.git</RepositoryUrl>
         <PackageTags>linq;async;query</PackageTags>
 
+        <Authors>Nepton Liu</Authors>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageReadmeFile>readme.md</PackageReadmeFile>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <IncludeSymbols>True</IncludeSymbols>
@@ -30,7 +29,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="app.png" Pack="true" PackagePath="\" />
+        <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
         <None Include="..\..\readme.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 
