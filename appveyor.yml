@@ -24,9 +24,9 @@ before_build:
 
 build_script:
 - cmd: >-
-    dotnet pack .\src\LinqAsync\LinqAsync.csproj -c %TARGET_CONFIGURATION% -p:VersionPrefix=%VERSION%
+    dotnet pack .\src\LinqAsync -c %TARGET_CONFIGURATION% -p:VersionPrefix=%VERSION%
 
-    dotnet pack .\src\LinqAsync.EFCore\LinqAsync.EFCore.csproj -c %TARGET_CONFIGURATION% -p:VersionPrefix=%VERSION%
+    dotnet pack .\src\LinqAsync.EFCore -c %TARGET_CONFIGURATION% -p:VersionPrefix=%VERSION%
 
 artifacts:
   - path: "src/**/*.nupkg"
