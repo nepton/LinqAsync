@@ -20,7 +20,7 @@ before_build:
 - cmd: >-
     dotnet --version
 
-    dotnet restore "LinqAsync.sln"
+    dotnet restore
 
 build_script:
 - cmd: >-
