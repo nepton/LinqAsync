@@ -18,7 +18,7 @@ public static class PageExtensions
         IQueryable<TSource> source,
         int                 skip,
         int                 take,
-        CancellationToken   cancel = default)
+        CancellationToken   cancel)
     {
         if (skip < 0)
             throw new ArgumentOutOfRangeException(nameof(skip));
@@ -47,7 +47,7 @@ public static class PageExtensions
         this IQueryable<TSource> source,
         int                      skip,
         int                      take,
-        CancellationToken        cancel = default)
+        CancellationToken        cancel)
     {
         return ToPageCoreAsync(source, skip, take, cancel);
     }
@@ -60,7 +60,7 @@ public static class PageExtensions
     /// <param name="pageFilter">the query filter about paged</param>
     /// <param name="cancel">Cancellation token</param>
     /// <returns>Return paged collection</returns>
-    public static Task<Page<TSource>> ToPageAsync<TSource>(this IQueryable<TSource> source, PageFilter pageFilter, CancellationToken cancel = default)
+    public static Task<Page<TSource>> ToPageAsync<TSource>(this IQueryable<TSource> source, PageFilter pageFilter, CancellationToken cancel)
     {
         if (pageFilter == null)
             throw new ArgumentNullException(nameof(pageFilter));
@@ -125,5 +125,53 @@ public static class PageExtensions
             throw new ArgumentNullException(nameof(pageQueryFilter));
 
         return ToPageCore(source, pageQueryFilter.Skip, pageQueryFilter.Take);
+    }
+
+    /// <summary>
+    /// ForEach the page
+    /// </summary>
+    /// <param name="page"></param>
+    /// <param name="action"></param>
+    /// <typeparam name="T"></typeparam>
+    public static void ForEach<T>(this Page<T> page, Action<T> action)
+    {
+        foreach (var item in page.Items)
+            action(item);
+    }
+
+    /// <summary>
+    /// ForEach the page
+    /// </summary>
+    /// <param name="page"></param>
+    /// <param name="action">The action, first parameter is the item, second parameter is the skip, and third parameter is the index</param>
+    /// <typeparam name="T"></typeparam>
+    public static void ForEach<T>(this Page<T> page, Action<T, int, int> action)
+    {
+        for (var i = 0; i < page.Items.Length; i++)
+            action(page.Items[i], page.Skip, i);
+    }
+
+    /// <summary>
+    /// ForEach the page
+    /// </summary>
+    /// <param name="page"></param>
+    /// <param name="action"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Task ForEachAsync<T>(this Page<T> page, Func<T, Task> action)
+    {
+        return Task.WhenAll(page.Items.Select(action));
+    }
+
+    /// <summary>
+    /// ForEach the page
+    /// </summary>
+    /// <param name="page"></param>
+    /// <param name="action">The action, first parameter is the item, second parameter is the skip, and third parameter is the index</param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static Task ForEachAsync<T>(this Page<T> page, Func<T, int, int, Task> action)
+    {
+        return Task.WhenAll(page.Items.Select((item, index) => action(item, page.Skip, index)));
     }
 }
